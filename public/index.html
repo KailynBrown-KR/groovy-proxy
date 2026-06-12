@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LiteLLM Chat</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!-- PDF.js for client-side PDF text extraction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+</head>
+<body>
+<div id="app">
+    <aside id="sidebar">
+        <button id="new-chat-btn" class="new-chat" title="New chat (⌘N)">
+            <span>＋</span> New chat
+        </button>
+        
+        <!-- Folder selector -->
+        <div id="folder-selector" class="folder-selector">
+            <select id="folder-select">
+                <option value="all">📁 All Chats</option>
+                <option value="unfiled">📄 Unfiled</option>
+            </select>
+            <button id="manage-folders-btn" class="ghost-btn small" title="Manage folders">⚙</button>
+        </div>
+        
+        <div id="chat-list" class="chat-list"></div>
+        <div class="sidebar-footer">
+            <div class="model-row">
+                <label>Model</label>
+                <div id="model-picker" class="model-picker">
+                    <button id="model-picker-btn" type="button" class="model-picker-btn">
+                        <span id="model-picker-label">Loading…</span>
+                        <span class="model-picker-arrow">▾</span>
+                    </button>
+                    <div id="model-picker-dropdown" class="model-picker-dropdown hidden">
+                        <div class="model-search-wrap">
+                            <input id="model-search" type="text" placeholder="Search models…" autocomplete="off" />
+                        </div>
+                        <div id="model-list" class="model-list"></div>
+                    </div>
+                </div>
+                <select id="model-select" hidden><option>Loading…</option></select>
+            </div>
+            <div class="muted small">via LiteLLM proxy · groovy edition</div>
+        </div>
+    </aside>
+
+    <main id="main">
+        <header id="topbar">
+            <div id="conversation-title" title="Double-click to rename">New chat</div>
+            <div class="spacer"></div>
+            <button id="mode-toggle" class="mode-toggle" title="Toggle Chat/Image mode">💬 Chat</button>
+            <button id="split-btn" class="ghost-btn" title="Split view">⊞</button>
+            <button id="clear-btn" class="ghost-btn" title="Delete this chat (⌘⌫)">🗑</button>
+        </header>
+
+        <section id="messages" class="messages">
+            <div class="empty-state">
+                <h1>LiteLLM Chat</h1>
+                <p>Ask anything · drop in images, code, PDFs · routed through your LiteLLM proxy.</p>
+            </div>
+        </section>
+
+        <div id="drop-overlay" class="drop-overlay hidden">
+            <div class="drop-card">📥 Drop files to attach</div>
+        </div>
+
+        <form id="composer" class="composer" autocomplete="off">
+            <div id="attachments" class="attachments hidden"></div>
+            <div class="composer-row">
+                <button id="attach-btn" type="button" class="round-btn" title="Attach files">📎</button>
+                <input id="file-input" type="file" multiple hidden
+                       accept="image/*,.txt,.md,.json,.csv,.tsv,.log,.xml,.yaml,.yml,.ini,.cfg,.toml,.py,.js,.ts,.tsx,.jsx,.java,.kt,.go,.rs,.rb,.php,.c,.h,.cpp,.hpp,.cs,.swift,.sh,.zsh,.bash,.sql,.html,.css,.scss,.less,.vue,.svelte,.pdf" />
+                <textarea
+                    id="input"
+                    rows="1"
+                    placeholder="Message…  (drop or paste files · Shift+Enter for newline)"
+                    autofocus
+                ></textarea>
+                <button id="send-btn" type="submit" title="Send (Enter)">↑</button>
+            </div>
+        </form>
+        <div class="composer-hint muted small">
+            <span id="char-counter">0 chars</span>
+            <span class="dot">·</span>
+            <span id="token-estimate">~0 tokens</span>
+            <span class="dot">·</span>
+            <span>Enter to send · Shift+Enter newline · Esc to stop</span>
+        </div>
+        <div id="response-stats" class="response-stats hidden"></div>
+    </main>
+</div>
+
+<!-- Settings Modal -->
+<div id="settings-modal" class="settings-modal hidden">
+    <div class="settings-modal-content">
+        <div class="settings-modal-header">
+            <h3>⚙ Settings</h3>
+            <button id="settings-close-btn" class="ghost-btn">✕</button>
+        </div>
+        <div class="settings-modal-body">
+            <div class="settings-sidebar">
+                <button class="settings-nav-btn active" data-tab="general">🎨 General</button>
+                <button class="settings-nav-btn" data-tab="models">🤖 Models</button>
+                <button class="settings-nav-btn" data-tab="files">📂 Files</button>
+                <button class="settings-nav-btn" data-tab="prompt">💬 System Prompt</button>
+                <button class="settings-nav-btn" data-tab="api">🔑 API</button>
+                <button class="settings-nav-btn" data-tab="export">📤 Export</button>
+            </div>
+            <div class="settings-main">
+                <!-- General Tab -->
+                <div class="settings-pane active" data-pane="general">
+                    <h4>Appearance</h4>
+                    <div class="settings-field">
+                        <label for="theme-select">Theme</label>
+                        <select id="theme-select">
+                            <option value="dark">🌙 Dark Olive</option>
+                            <option value="light">☀️ Sunburst</option>
+                        </select>
+                    </div>
+                    <div class="settings-field">
+                        <label for="username-input">Your display name</label>
+                        <input id="username-input" type="text" placeholder="You" maxlength="30" />
+                    </div>
+                </div>
+                
+                <!-- Models Tab -->
+                <div class="settings-pane" data-pane="models">
+                    <h4>Model Management</h4>
+                    <div class="settings-field">
+                        <input id="model-settings-search" type="text" placeholder="Search models…" />
+                    </div>
+                    <div class="settings-field">
+                        <label class="checkbox-label">
+                            <input id="show-hidden-models" type="checkbox" />
+                            Show hidden models
+                        </label>
+                    </div>
+                    <div id="model-settings-list" class="model-settings-list"></div>
+                    <div class="model-settings-stats muted small"></div>
+                </div>
+                
+                <!-- Files Tab -->
+                <div class="settings-pane" data-pane="files">
+                    <h4>Context Files</h4>
+                    <p class="muted small">Files attached to every message in this conversation.</p>
+                    <div id="context-files" class="context-files-list"></div>
+                    <button id="add-context-btn" type="button" class="add-context-btn">📎 Add context files…</button>
+                    <input id="context-file-input" type="file" multiple hidden
+                           accept="image/*,.txt,.md,.json,.csv,.tsv,.log,.xml,.yaml,.yml,.ini,.cfg,.toml,.py,.js,.ts,.tsx,.jsx,.java,.kt,.go,.rs,.rb,.php,.c,.h,.cpp,.hpp,.cs,.swift,.sh,.zsh,.bash,.sql,.html,.css,.scss,.less,.vue,.svelte,.pdf" />
+                    
+                    <h4>Pending Attachments</h4>
+                    <p class="muted small">Files to be attached to your next message.</p>
+                    <div id="pending-files-list" class="context-files-list"></div>
+                </div>
+                
+                <!-- System Prompt Tab -->
+                <div class="settings-pane" data-pane="prompt">
+                    <h4>System Prompt</h4>
+                    <p class="muted small">This prompt is sent as the first message to provide context.</p>
+                    <textarea id="system-input" rows="5" placeholder="You are a helpful assistant…"></textarea>
+                </div>
+                
+                <!-- API Tab -->
+                <div class="settings-pane" data-pane="api">
+                    <h4>API Configuration</h4>
+                    <div class="settings-field">
+                        <label for="api-key-input">API Key</label>
+                        <div class="api-key-row">
+                            <input id="api-key-input" type="password" placeholder="sk-... (optional)" />
+                            <button id="toggle-api-key" type="button" class="ghost-btn small">👁</button>
+                        </div>
+                        <p class="muted small">Stored locally. Leave blank to use server-side key.</p>
+                    </div>
+                    <div class="settings-field">
+                        <label for="api-base-input">API Base URL</label>
+                        <input id="api-base-input" type="text" placeholder="Use proxy default" />
+                    </div>
+                </div>
+                
+                <!-- Export Tab -->
+                <div class="settings-pane" data-pane="export">
+                    <h4>Export Conversation</h4>
+                    <p class="muted small">Download the current conversation in various formats.</p>
+                    <div class="export-buttons">
+                        <button class="export-btn-large" data-format="md">
+                            <span class="export-icon">📝</span>
+                            <span>Markdown</span>
+                        </button>
+                        <button class="export-btn-large" data-format="json">
+                            <span class="export-icon">🔧</span>
+                            <span>JSON</span>
+                        </button>
+                        <button class="export-btn-large" data-format="txt">
+                            <span class="export-icon">📄</span>
+                            <span>Plain Text</span>
+                        </button>
+                        <button class="export-btn-large" data-format="html">
+                            <span class="export-icon">🌐</span>
+                            <span>HTML</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Folder Management Modal -->
+<div id="folder-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📁 Manage Folders</h3>
+            <button class="modal-close ghost-btn">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="folder-create-row">
+                <input id="new-folder-input" type="text" placeholder="New folder name…" />
+                <button id="create-folder-btn" class="ghost-btn">+ Add</button>
+            </div>
+            <div id="folder-list" class="folder-list"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Context Menu (for folder/tag assignment) -->
+<div id="chat-context-menu" class="context-menu hidden">
+    <div class="context-menu-section">
+        <div class="context-menu-label">Move to folder</div>
+        <div id="context-folder-options" class="context-menu-options"></div>
+    </div>
+    <div class="context-menu-section">
+        <div class="context-menu-label">Tags</div>
+        <div id="context-tag-options" class="context-menu-options"></div>
+        <div class="context-menu-add-tag">
+            <input id="new-tag-input" type="text" placeholder="Add tag…" />
+        </div>
+    </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
