@@ -2,13 +2,13 @@
 /**
  * Minimal Node.js server that:
  *   1. Serves the static ChatGPT-esque frontend (public/)
- *   2. Proxies /api/* requests to a LiteLLM proxy (default https://api-internal.8451.com/ai/proxy)
+ *   2. Proxies /api/* requests to a LiteLLM/OpenAI-compatible API
  *
  * No external dependencies — uses only Node built-ins.
  *
  * Env vars:
  *   PORT              - Port for this server (default 3000)
- *   LITELLM_BASE_URL  - LiteLLM proxy base URL (default https://api-internal.8451.com/ai/proxy)
+ *   LITELLM_BASE_URL  - (REQUIRED) API base URL, e.g. https://api.openai.com/v1
  *   LITELLM_API_KEY   - Optional API key forwarded as Authorization: Bearer ...
  */
 
@@ -20,8 +20,17 @@ const { URL } = require('url');
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
 // Strip any trailing slash so we don't end up with `//v1/...`
-const LITELLM_BASE_URL = (process.env.LITELLM_BASE_URL || 'https://api-internal.8451.com/ai/proxy')
+const LITELLM_BASE_URL = (process.env.LITELLM_BASE_URL || '')
     .replace(/\/+$/, '');
+
+if (!LITELLM_BASE_URL) {
+    console.error('❌ ERROR: LITELLM_BASE_URL environment variable is required!');
+    console.error('   Set it to your API endpoint, e.g.:');
+    console.error('   - OpenAI: https://api.openai.com/v1');
+    console.error('   - Azure: https://YOUR-RESOURCE.openai.azure.com/openai/deployments/YOUR-DEPLOYMENT');
+    console.error('   - LiteLLM proxy: https://your-proxy-url.com');
+    process.exit(1);
+}
 const LITELLM_API_KEY = process.env.LITELLM_API_KEY || '';
 
 const PUBLIC_DIR = path.join(__dirname, 'public');
