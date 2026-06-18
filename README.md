@@ -1,6 +1,6 @@
 # LiteLLM Chat
 
-A minimal, self-hosted chat interface for [LiteLLM](https://github.com/BerriAI/litellm) and OpenAI-compatible APIs. Works like ChatGPT, runs on your Mac.
+A minimal, self-hosted chat interface for [LiteLLM](https://github.com/BerriAI/litellm) and OpenAI-compatible APIs.
 
 ## 🚀 Quick Start (macOS)
 
