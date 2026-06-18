@@ -2468,7 +2468,10 @@ function createModelSettingsPanel() {
                                 <option value="light">☀️ Sunburst</option>
                                 <option value="plum">🍇 Plum Purple</option>
                                 <option value="sage">🌿 Sage</option>
-                                <option value="ocean">🌊 Ocean</option>                                
+                                <option value="ocean">🌊 Ocean</option>
+                                <option value="slate">🌑 Slate</option>
+                                <option value="rose">🌹 Rose</option>
+                                <option value="lavender">💜 Lavender</option>
                             </select>
                         </div>
                         <div class="settings-field">

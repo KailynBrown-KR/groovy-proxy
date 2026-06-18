@@ -445,6 +445,411 @@
     border-color: var(--accent);
 }
 
+/* ============================================================
+   Slate Dark Theme — moody purple-gray dark theme
+   Colors: #37353E, #44444E, #715A5A, #D3DAD9
+   ============================================================ */
+[data-theme="slate"] {
+    /* Purple-gray base */
+    --bg:           #37353E;   /* deep purple-gray */
+    --bg-2:         #3d3b45;
+    --sidebar-bg:   #2e2c35;   /* darker purple */
+    --panel:        #44444E;   /* mid purple-gray */
+    --panel-2:      #4d4d58;
+    --border:       #5a5a65;
+
+    /* Soft cream ink */
+    --text:         #D3DAD9;   /* pale sage */
+    --text-soft:    #b8c0bf;
+    --muted:        #8a9190;
+
+    /* Dusty rose accents */
+    --accent:       #715A5A;   /* dusty rose */
+    --accent-2:     #8a7070;   /* lighter rose */
+    --accent-hot:   #5d4848;   /* dark rose */
+    --accent-deep:  #4a3a3a;
+
+    /* Purple highlights */
+    --olive:        #6a6478;   /* muted purple */
+    --olive-bright: #8a8498;   /* light purple */
+
+    /* Mood */
+    --danger:       #8a5050;
+    --user-bubble-bg:      rgba(68, 68, 78, 0.92);
+    --user-bubble-border:  rgba(113, 90, 90, 0.55);
+    --assistant-bubble-bg: rgba(55, 53, 62, 0.92);
+    --assistant-bubble-border: rgba(106, 100, 120, 0.40);
+
+    --shadow-warm: 0 4px 20px rgba(0, 0, 0, 0.35),
+                   0 0 60px rgba(113, 90, 90, 0.04) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.05;
+    --pattern-opacity: 0.02;
+}
+
+/* Slate theme pattern */
+[data-theme="slate"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%23715A5A' stroke='%236a6478' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="slate"] #sidebar {
+    background: linear-gradient(180deg, #2e2c35 0%, #28262e 100%);
+    box-shadow: inset -1px 0 0 rgba(113, 90, 90, 0.20);
+}
+[data-theme="slate"] #topbar {
+    background: linear-gradient(180deg, rgba(68, 68, 78, 0.95), rgba(55, 53, 62, 0.85));
+}
+[data-theme="slate"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="slate"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="slate"] .ghost-btn:hover {
+    background: rgba(113, 90, 90, 0.20);
+    color: var(--accent-2);
+}
+[data-theme="slate"] .chat-item.active {
+    background: rgba(113, 90, 90, 0.30);
+    border-color: var(--accent);
+}
+[data-theme="slate"] .chat-item:hover:not(.active) {
+    background: rgba(113, 90, 90, 0.15);
+}
+[data-theme="slate"] #model-select,
+[data-theme="slate"] #folder-select {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
+}
+[data-theme="slate"] .context-file-thumb {
+    background: rgba(113, 90, 90, 0.15);
+    border-color: rgba(113, 90, 90, 0.30);
+}
+[data-theme="slate"] .bubble .content pre {
+    background: #2e2c35;
+    border-color: #5a5a65;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.15);
+}
+[data-theme="slate"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="slate"] .bubble .content code {
+    background: rgba(113, 90, 90, 0.25);
+    color: var(--text);
+    border-color: rgba(113, 90, 90, 0.35);
+}
+[data-theme="slate"] .code-copy-btn {
+    background: rgba(68, 68, 78, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="slate"] .code-copy-btn:hover {
+    background: var(--panel-2);
+    color: var(--accent-2);
+    border-color: var(--accent);
+}
+[data-theme="slate"] .new-chat {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hot) 100%);
+    box-shadow:
+        0 2px 0 var(--accent-deep),
+        0 6px 14px rgba(0, 0, 0, 0.40);
+}
+[data-theme="slate"] .mode-toggle.image-mode {
+    background: linear-gradient(135deg, rgba(106, 100, 120, 0.35), rgba(113, 90, 90, 0.20));
+    border-color: var(--olive);
+    color: var(--accent-2);
+}
+[data-theme="slate"] .settings-nav-btn.active {
+    background: rgba(113, 90, 90, 0.25);
+    color: var(--accent-2);
+    border-left-color: var(--accent);
+}
+[data-theme="slate"] .model-list-item.selected {
+    background: rgba(113, 90, 90, 0.25);
+    color: var(--accent-2);
+}
+[data-theme="slate"] .model-fav-btn:hover {
+    background: rgba(113, 90, 90, 0.20);
+    border-color: var(--accent);
+}
+[data-theme="slate"] .model-fav-btn.active {
+    background: rgba(113, 90, 90, 0.35);
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   Rose Light Theme — cream with pink/magenta accents
+   Colors: #EBE8DB, #D76C82, #B03052, #3D0301
+   ============================================================ */
+[data-theme="rose"] {
+    /* Warm cream base */
+    --bg:           #EBE8DB;   /* warm cream */
+    --bg-2:         #e2dfd0;
+    --sidebar-bg:   #e0dccf;   /* soft cream */
+    --panel:        #e5e2d5;   /* light cream */
+    --panel-2:      #dbd8cb;
+    --border:       #c8c5b8;
+
+    /* Deep burgundy ink */
+    --text:         #3D0301;   /* deep burgundy */
+    --text-soft:    #5a2020;
+    --muted:        #7a4a4a;
+
+    /* Pink/magenta accents */
+    --accent:       #B03052;   /* magenta */
+    --accent-2:     #D76C82;   /* pink */
+    --accent-hot:   #8a2040;   /* dark magenta */
+    --accent-deep:  #3D0301;
+
+    /* Rose highlights */
+    --olive:        #D76C82;   /* rose pink */
+    --olive-bright: #e8899a;   /* light pink */
+
+    /* Mood */
+    --danger:       #B03052;
+    --user-bubble-bg:      rgba(235, 232, 219, 0.96);
+    --user-bubble-border:  rgba(176, 48, 82, 0.45);
+    --assistant-bubble-bg: rgba(215, 108, 130, 0.15);
+    --assistant-bubble-border: rgba(176, 48, 82, 0.35);
+
+    --shadow-warm: 0 4px 20px rgba(61, 3, 1, 0.10),
+                   0 0 60px rgba(176, 48, 82, 0.03) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.02;
+    --pattern-opacity: 0.03;
+}
+
+/* Rose theme pattern */
+[data-theme="rose"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%23D76C82' stroke='%23B03052' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="rose"] #sidebar {
+    background: linear-gradient(180deg, #e0dccf 0%, #d5d1c4 100%);
+    box-shadow: inset -1px 0 0 rgba(176, 48, 82, 0.15);
+}
+[data-theme="rose"] #topbar {
+    background: linear-gradient(180deg, rgba(224, 220, 207, 0.95), rgba(235, 232, 219, 0.85));
+}
+[data-theme="rose"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="rose"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="rose"] .ghost-btn:hover {
+    background: rgba(176, 48, 82, 0.12);
+    color: var(--accent);
+}
+[data-theme="rose"] .chat-item.active {
+    background: rgba(215, 108, 130, 0.25);
+    border-color: var(--accent);
+}
+[data-theme="rose"] .chat-item:hover:not(.active) {
+    background: rgba(215, 108, 130, 0.12);
+}
+[data-theme="rose"] #model-select,
+[data-theme="rose"] #folder-select {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
+}
+[data-theme="rose"] .context-file-thumb {
+    background: rgba(215, 108, 130, 0.12);
+    border-color: rgba(176, 48, 82, 0.20);
+}
+[data-theme="rose"] .bubble .content pre {
+    background: #e2dfd0;
+    border-color: #c8c5b8;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(61, 3, 1, 0.05);
+}
+[data-theme="rose"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="rose"] .bubble .content code {
+    background: rgba(215, 108, 130, 0.25);
+    color: var(--accent-deep);
+    border-color: rgba(176, 48, 82, 0.25);
+}
+[data-theme="rose"] .code-copy-btn {
+    background: rgba(229, 226, 213, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="rose"] .code-copy-btn:hover {
+    background: var(--panel);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+[data-theme="rose"] .new-chat {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hot) 100%);
+    box-shadow:
+        0 2px 0 var(--accent-deep),
+        0 6px 14px rgba(61, 3, 1, 0.25);
+}
+[data-theme="rose"] .mode-toggle.image-mode {
+    background: linear-gradient(135deg, rgba(215, 108, 130, 0.30), rgba(176, 48, 82, 0.15));
+    border-color: var(--olive);
+    color: var(--accent-hot);
+}
+[data-theme="rose"] .settings-nav-btn.active {
+    background: rgba(215, 108, 130, 0.20);
+    color: var(--accent);
+    border-left-color: var(--accent);
+}
+[data-theme="rose"] .model-list-item.selected {
+    background: rgba(215, 108, 130, 0.20);
+    color: var(--accent);
+}
+[data-theme="rose"] .model-fav-btn:hover {
+    background: rgba(176, 48, 82, 0.15);
+    border-color: var(--accent);
+}
+[data-theme="rose"] .model-fav-btn.active {
+    background: rgba(176, 48, 82, 0.25);
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   Lavender Light Theme — warm cream with purple/periwinkle accents
+   Colors: #F2EAE0, #B4D3D9, #BDA6CE, #9B8EC7
+   ============================================================ */
+[data-theme="lavender"] {
+    /* Warm cream base */
+    --bg:           #F2EAE0;   /* warm cream */
+    --bg-2:         #e9e1d6;
+    --sidebar-bg:   #B4D3D9;   /* soft blue-lavender */
+    --panel:        #ebe3d9;   /* light cream */
+    --panel-2:      #e2dad0;
+    --border:       #c8c0b6;
+
+    /* Soft purple ink */
+    --text:         #4a4060;   /* muted purple */
+    --text-soft:    #5a5070;
+    --muted:        #7a7088;
+
+    /* Purple/periwinkle accents */
+    --accent:       #9B8EC7;   /* periwinkle */
+    --accent-2:     #BDA6CE;   /* lavender */
+    --accent-hot:   #7a6aa8;   /* deeper purple */
+    --accent-deep:  #5a4a88;
+
+    /* Lavender highlights */
+    --olive:        #BDA6CE;   /* soft lavender */
+    --olive-bright: #d0bde0;   /* light lavender */
+
+    /* Mood */
+    --danger:       #a05060;
+    --user-bubble-bg:      rgba(242, 234, 224, 0.96);
+    --user-bubble-border:  rgba(155, 142, 199, 0.45);
+    --assistant-bubble-bg: rgba(180, 211, 217, 0.35);
+    --assistant-bubble-border: rgba(189, 166, 206, 0.45);
+
+    --shadow-warm: 0 4px 20px rgba(74, 64, 96, 0.10),
+                   0 0 60px rgba(155, 142, 199, 0.03) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.02;
+    --pattern-opacity: 0.035;
+}
+
+/* Lavender theme pattern */
+[data-theme="lavender"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%23BDA6CE' stroke='%239B8EC7' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="lavender"] #sidebar {
+    background: linear-gradient(180deg, #B4D3D9 0%, #a4c3c9 100%);
+    box-shadow: inset -1px 0 0 rgba(155, 142, 199, 0.20);
+}
+[data-theme="lavender"] #topbar {
+    background: linear-gradient(180deg, rgba(180, 211, 217, 0.85), rgba(242, 234, 224, 0.85));
+}
+[data-theme="lavender"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="lavender"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="lavender"] .ghost-btn:hover {
+    background: rgba(155, 142, 199, 0.15);
+    color: var(--accent);
+}
+[data-theme="lavender"] .chat-item.active {
+    background: rgba(189, 166, 206, 0.30);
+    border-color: var(--accent);
+}
+[data-theme="lavender"] .chat-item:hover:not(.active) {
+    background: rgba(189, 166, 206, 0.15);
+}
+[data-theme="lavender"] #model-select,
+[data-theme="lavender"] #folder-select {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
+}
+[data-theme="lavender"] .context-file-thumb {
+    background: rgba(189, 166, 206, 0.18);
+    border-color: rgba(155, 142, 199, 0.25);
+}
+[data-theme="lavender"] .bubble .content pre {
+    background: #e9e1d6;
+    border-color: #c8c0b6;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(74, 64, 96, 0.05);
+}
+[data-theme="lavender"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="lavender"] .bubble .content code {
+    background: rgba(189, 166, 206, 0.35);
+    color: var(--accent-deep);
+    border-color: rgba(155, 142, 199, 0.25);
+}
+[data-theme="lavender"] .code-copy-btn {
+    background: rgba(235, 227, 217, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="lavender"] .code-copy-btn:hover {
+    background: var(--panel);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+[data-theme="lavender"] .new-chat {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hot) 100%);
+    box-shadow:
+        0 2px 0 var(--accent-deep),
+        0 6px 14px rgba(74, 64, 96, 0.25);
+}
+[data-theme="lavender"] .mode-toggle.image-mode {
+    background: linear-gradient(135deg, rgba(189, 166, 206, 0.35), rgba(155, 142, 199, 0.20));
+    border-color: var(--olive);
+    color: var(--accent-hot);
+}
+[data-theme="lavender"] .settings-nav-btn.active {
+    background: rgba(189, 166, 206, 0.25);
+    color: var(--accent);
+    border-left-color: var(--accent);
+}
+[data-theme="lavender"] .model-list-item.selected {
+    background: rgba(189, 166, 206, 0.25);
+    color: var(--accent);
+}
+[data-theme="lavender"] .model-fav-btn:hover {
+    background: rgba(155, 142, 199, 0.15);
+    border-color: var(--accent);
+}
+[data-theme="lavender"] .model-fav-btn.active {
+    background: rgba(155, 142, 199, 0.25);
+    border-color: var(--accent);
+}
+
 * { box-sizing: border-box; }
 .hidden { display: none !important; }
 
