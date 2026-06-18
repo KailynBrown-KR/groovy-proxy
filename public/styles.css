@@ -87,6 +87,122 @@
     --pattern-opacity: 0.04;
 }
 
+/* ============================================================
+   Plum Purple Light Theme — soft lavender + violet accents
+   ============================================================ */
+[data-theme="plum"] {
+    /* Lavender base */
+    --bg:           #f8f5fa;   /* soft lavender white */
+    --bg-2:         #f0eaf5;
+    --sidebar-bg:   #e8e0f0;   /* pale wisteria */
+    --panel:        #ece5f2;   /* light mauve */
+    --panel-2:      #e2d8ed;
+    --border:       #c9b8d8;
+
+    /* Deep plum ink */
+    --text:         #2d1f3d;   /* deep plum */
+    --text-soft:    #4a3860;
+    --muted:        #7a6890;
+
+    /* Violet & orchid accents */
+    --accent:       #8b5cf6;   /* violet */
+    --accent-2:     #a78bfa;   /* lavender */
+    --accent-hot:   #7c3aed;   /* purple */
+    --accent-deep:  #5b21b6;
+
+    /* Mauve & berry */
+    --olive:        #9d5094;   /* orchid */
+    --olive-bright: #c084b8;   /* pink mauve */
+
+    /* Mood */
+    --danger:       #dc2626;
+    --user-bubble-bg:      rgba(248, 240, 255, 0.94);
+    --user-bubble-border:  rgba(139, 92, 246, 0.45);
+    --assistant-bubble-bg: rgba(245, 240, 250, 0.94);
+    --assistant-bubble-border: rgba(192, 132, 184, 0.40);
+
+    --shadow-warm: 0 4px 20px rgba(45, 31, 61, 0.10),
+                   0 0 60px rgba(139, 92, 246, 0.03) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.02;
+    --pattern-opacity: 0.03;
+}
+
+/* Light theme pattern adjustments for plum */
+[data-theme="plum"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%239d5094' stroke='%23c084b8' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="plum"] #sidebar {
+    background: linear-gradient(180deg, #e8e0f0 0%, #ddd5ea 100%);
+    box-shadow: inset -1px 0 0 rgba(139, 92, 246, 0.15);
+}
+[data-theme="plum"] #topbar {
+    background: linear-gradient(180deg, rgba(232, 224, 240, 0.95), rgba(248, 245, 250, 0.85));
+}
+[data-theme="plum"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="plum"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="plum"] .ghost-btn:hover {
+    color: var(--accent);
+}
+[data-theme="plum"] .chat-item {
+    color: var(--text-soft);
+}
+[data-theme="plum"] .chat-item:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--text);
+}
+[data-theme="plum"] .chat-item.active {
+    background: linear-gradient(90deg,
+        rgba(139, 92, 246, 0.15) 0%,
+        rgba(157, 80, 148, 0.08) 100%);
+    color: var(--text);
+}
+[data-theme="plum"] .mode-toggle {
+    color: var(--text-soft);
+}
+[data-theme="plum"] .model-row label {
+    color: var(--olive);
+}
+[data-theme="plum"] .bubble .content pre {
+    background: #f0eaf5;
+    border-color: #c9b8d8;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(45, 31, 61, 0.06);
+}
+[data-theme="plum"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="plum"] .bubble .content code {
+    background: rgba(201, 184, 216, 0.4);
+    color: var(--accent-deep);
+    border-color: rgba(139, 92, 246, 0.2);
+}
+[data-theme="plum"] .code-copy-btn {
+    background: rgba(236, 229, 242, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="plum"] .code-copy-btn:hover {
+    background: var(--panel);
+    color: var(--olive);
+    border-color: var(--olive);
+}
+[data-theme="plum"] .settings-modal {
+    background: rgba(248, 245, 250, 0.92);
+}
+[data-theme="plum"] .chat-pane .pane-topbar {
+    background: linear-gradient(180deg, rgba(232, 224, 240, 0.95), rgba(248, 245, 250, 0.85));
+}
+[data-theme="plum"] .chat-pane {
+    background: var(--bg);
+}
+
 * { box-sizing: border-box; }
 .hidden { display: none !important; }
 
@@ -2033,7 +2149,7 @@ body::after {
 .folder-chats-list h5 {
     margin: 16px 0 8px;
     font-size: 13px;
-    color: var(--fg);
+    color: var(--text-soft);
     opacity: 0.8;
 }
 .folder-contents-header {
