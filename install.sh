@@ -156,8 +156,8 @@ fi
 
 echo "✅ App created at ~/Applications/$APP_NAME.app"
 
-# Step 9: Save config pointing to install directory
-echo "$INSTALL_DIR" > "$HOME/.groovy-proxy-config"
+# Step 9: Save project directory path
+echo "$INSTALL_DIR" > "$HOME/.groovy-proxy-dir"
 
 # Done!
 echo ""
