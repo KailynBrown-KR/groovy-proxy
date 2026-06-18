@@ -2463,8 +2463,9 @@ function createModelSettingsPanel() {
                         <div class="settings-field">
                             <label>Theme</label>
                             <select id="panel-theme-select">
-                                <option value="dark">🌙 Dark (Olive)</option>
-                                <option value="light">☀️ Light (Sunburst)</option>
+                                <option value="dark">🫒 Dark Olive</option>
+                                <option value="light">☀️ Sunburst</option>
+                                <option value="plum">🍇 Plum Purple</option>
                             </select>
                         </div>
                         <div class="settings-field">
