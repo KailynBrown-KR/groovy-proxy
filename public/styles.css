@@ -240,6 +240,14 @@
     color: var(--accent);
     border-left-color: var(--accent);
 }
+[data-theme="sage"] .model-list-item.selected {
+    background: rgba(174, 183, 132, 0.25);
+    color: var(--accent);
+}
+[data-theme="sage"] .model-fav-btn.active {
+    background: rgba(107, 112, 48, 0.2);
+    border-color: var(--accent);
+}
 
 /* ============================================================
    Ocean Light Theme — warm cream + steel blue/navy accents
@@ -363,6 +371,14 @@
     color: var(--accent);
     border-left-color: var(--accent);
 }
+[data-theme="ocean"] .model-list-item.selected {
+    background: rgba(84, 119, 146, 0.20);
+    color: var(--accent);
+}
+[data-theme="ocean"] .model-fav-btn.active {
+    background: rgba(84, 119, 146, 0.2);
+    border-color: var(--accent);
+}
 
 /* Light theme pattern adjustments for plum */
 [data-theme="plum"] body::after {
@@ -407,6 +423,14 @@
     background: rgba(133, 57, 83, 0.18);
     color: var(--accent);
     border-left-color: var(--accent);
+}
+[data-theme="plum"] .model-list-item.selected {
+    background: rgba(133, 57, 83, 0.18);
+    color: var(--accent);
+}
+[data-theme="plum"] .model-fav-btn.active {
+    background: rgba(133, 57, 83, 0.2);
+    border-color: var(--accent);
 }
 
 * { box-sizing: border-box; }
