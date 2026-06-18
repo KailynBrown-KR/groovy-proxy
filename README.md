@@ -23,7 +23,7 @@ That's it! The installer handles everything automatically, then you can double-c
 - **Streaming Responses** — Real-time SSE streaming like ChatGPT
 - **Multiple Conversations** — Stored in `localStorage`, persists across sessions
 - **Model Picker** — Auto-populated from your API endpoint
-- **Dark Theme** — Clean, ChatGPT-style interface
+- **Multiple Themes** — Clean dark and light theme to choose from
 
 ---
 
@@ -137,7 +137,7 @@ server.js          # Node static server + /api/* reverse proxy
 start-server.sh    # Launch script with auto-update & credential management
 install.sh         # One-click installer for macOS
 public/index.html  # Shell layout (sidebar + chat area)
-public/styles.css  # Dark, ChatGPT-style theme
+public/styles.css  # Dark & Light theme options
 public/app.js      # Chat logic, streaming, conversation state
 ```
 
