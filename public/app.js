@@ -2463,7 +2463,7 @@ function createModelSettingsPanel() {
                         <div class="settings-field">
                             <label>Theme</label>
                             <select id="panel-theme-select">
-                                <option value="dark">🌙 Dark (Groovy Olive)</option>
+                                <option value="dark">🌙 Dark (Olive)</option>
                                 <option value="light">☀️ Light (Sunburst)</option>
                             </select>
                         </div>
@@ -3074,7 +3074,7 @@ function quoteMessage(content) {
 
 /* ====== Theme ====== */
 function getTheme() {
-    return localStorage.getItem(LS_THEME) || 'dark';
+    return localStorage.getItem(LS_THEME) || 'light';
 }
 function setTheme(theme) {
     localStorage.setItem(LS_THEME, theme);
