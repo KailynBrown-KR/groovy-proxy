@@ -129,6 +129,231 @@
     --pattern-opacity: 0.03;
 }
 
+/* ============================================================
+   Sage Light Theme — warm cream + olive/sage accents
+   Colors: #41431B, #AEB784, #E3DBBB, #F8F3E1
+   ============================================================ */
+[data-theme="sage"] {
+    /* Warm cream base */
+    --bg:           #F8F3E1;   /* soft cream */
+    --bg-2:         #f0ebd5;
+    --sidebar-bg:   #E3DBBB;   /* warm beige */
+    --panel:        #ebe3cb;   /* light tan */
+    --panel-2:      #e3dbbf;
+    --border:       #cdc5a8;
+
+    /* Dark olive ink */
+    --text:         #41431B;   /* dark olive */
+    --text-soft:    #5a5c30;
+    --muted:        #7a7c50;
+
+    /* Sage & olive accents */
+    --accent:       #6b7030;   /* sage green */
+    --accent-2:     #8a9048;   /* olive */
+    --accent-hot:   #5a5e28;   /* dark sage */
+    --accent-deep:  #41431B;
+
+    /* Olive highlights */
+    --olive:        #AEB784;   /* sage */
+    --olive-bright: #c4cc9a;   /* light sage */
+
+    /* Mood */
+    --danger:       #8a5020;
+    --user-bubble-bg:      rgba(248, 243, 225, 0.96);
+    --user-bubble-border:  rgba(107, 112, 48, 0.45);
+    --assistant-bubble-bg: rgba(227, 219, 187, 0.85);
+    --assistant-bubble-border: rgba(174, 183, 132, 0.50);
+
+    --shadow-warm: 0 4px 20px rgba(65, 67, 27, 0.10),
+                   0 0 60px rgba(107, 112, 48, 0.03) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.02;
+    --pattern-opacity: 0.04;
+}
+
+/* Sage theme pattern */
+[data-theme="sage"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%23AEB784' stroke='%236b7030' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="sage"] #sidebar {
+    background: linear-gradient(180deg, #E3DBBB 0%, #d8d0a8 100%);
+    box-shadow: inset -1px 0 0 rgba(107, 112, 48, 0.15);
+}
+[data-theme="sage"] #topbar {
+    background: linear-gradient(180deg, rgba(227, 219, 187, 0.95), rgba(248, 243, 225, 0.85));
+}
+[data-theme="sage"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="sage"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="sage"] .ghost-btn:hover {
+    background: rgba(107, 112, 48, 0.12);
+    color: var(--accent);
+}
+[data-theme="sage"] .chat-item.active {
+    background: rgba(174, 183, 132, 0.35);
+    border-color: var(--accent);
+}
+[data-theme="sage"] .chat-item:hover:not(.active) {
+    background: rgba(174, 183, 132, 0.15);
+}
+[data-theme="sage"] #model-select,
+[data-theme="sage"] #folder-select {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
+}
+[data-theme="sage"] .context-file-thumb {
+    background: rgba(174, 183, 132, 0.15);
+    border-color: rgba(174, 183, 132, 0.35);
+}
+[data-theme="sage"] .bubble .content pre {
+    background: #f0ebd5;
+    border-color: #cdc5a8;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(65, 67, 27, 0.06);
+}
+[data-theme="sage"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="sage"] .bubble .content code {
+    background: rgba(174, 183, 132, 0.35);
+    color: var(--accent-deep);
+    border-color: rgba(107, 112, 48, 0.25);
+}
+[data-theme="sage"] .code-copy-btn {
+    background: rgba(235, 227, 203, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="sage"] .code-copy-btn:hover {
+    background: var(--panel);
+    color: var(--olive);
+    border-color: var(--olive);
+}
+
+/* ============================================================
+   Ocean Light Theme — warm cream + steel blue/navy accents
+   Colors: #213448, #547792, #94B4C1, #EAE0CF
+   ============================================================ */
+[data-theme="ocean"] {
+    /* Warm cream base */
+    --bg:           #EAE0CF;   /* warm cream */
+    --bg-2:         #e0d6c3;
+    --sidebar-bg:   #94B4C1;   /* soft blue-gray */
+    --panel:        #e0d6c3;   /* light tan */
+    --panel-2:      #d6cbb8;
+    --border:       #b8c8d0;
+
+    /* Dark navy ink */
+    --text:         #213448;   /* deep navy */
+    --text-soft:    #3a4d60;
+    --muted:        #5a6d7a;
+
+    /* Steel blue accents */
+    --accent:       #547792;   /* steel blue */
+    --accent-2:     #6a8aa6;   /* lighter blue */
+    --accent-hot:   #3d5a72;   /* dark blue */
+    --accent-deep:  #213448;
+
+    /* Blue highlights */
+    --olive:        #94B4C1;   /* light blue-gray */
+    --olive-bright: #a8c4d0;   /* pale blue */
+
+    /* Mood */
+    --danger:       #8a4040;
+    --user-bubble-bg:      rgba(234, 224, 207, 0.96);
+    --user-bubble-border:  rgba(84, 119, 146, 0.45);
+    --assistant-bubble-bg: rgba(148, 180, 193, 0.35);
+    --assistant-bubble-border: rgba(84, 119, 146, 0.40);
+
+    --shadow-warm: 0 4px 20px rgba(33, 52, 72, 0.10),
+                   0 0 60px rgba(84, 119, 146, 0.03) inset;
+    
+    /* Theme-specific overlay opacity */
+    --grain-opacity: 0.02;
+    --pattern-opacity: 0.035;
+}
+
+/* Ocean theme pattern */
+[data-theme="ocean"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%2394B4C1' stroke='%23547792' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-theme="ocean"] #sidebar {
+    background: linear-gradient(180deg, #94B4C1 0%, #84a4b1 100%);
+    box-shadow: inset -1px 0 0 rgba(84, 119, 146, 0.20);
+}
+[data-theme="ocean"] #topbar {
+    background: linear-gradient(180deg, rgba(148, 180, 193, 0.85), rgba(234, 224, 207, 0.85));
+}
+[data-theme="ocean"] #conversation-title {
+    color: var(--text);
+}
+[data-theme="ocean"] .ghost-btn {
+    color: var(--text-soft);
+}
+[data-theme="ocean"] .ghost-btn:hover {
+    background: rgba(84, 119, 146, 0.15);
+    color: var(--accent);
+}
+[data-theme="ocean"] .chat-item.active {
+    background: rgba(84, 119, 146, 0.25);
+    border-color: var(--accent);
+}
+[data-theme="ocean"] .chat-item:hover:not(.active) {
+    background: rgba(84, 119, 146, 0.12);
+}
+[data-theme="ocean"] #model-select,
+[data-theme="ocean"] #folder-select {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
+}
+[data-theme="ocean"] .context-file-thumb {
+    background: rgba(148, 180, 193, 0.20);
+    border-color: rgba(84, 119, 146, 0.25);
+}
+[data-theme="ocean"] .bubble .content pre {
+    background: #e0d6c3;
+    border-color: #b8c8d0;
+    border-left-color: var(--accent);
+    box-shadow: inset 0 0 20px rgba(33, 52, 72, 0.06);
+}
+[data-theme="ocean"] .bubble .content pre code {
+    color: var(--text);
+}
+[data-theme="ocean"] .bubble .content code {
+    background: rgba(148, 180, 193, 0.40);
+    color: var(--accent-deep);
+    border-color: rgba(84, 119, 146, 0.25);
+}
+[data-theme="ocean"] .code-copy-btn {
+    background: rgba(224, 214, 195, 0.95);
+    color: var(--text-soft);
+    border-color: var(--border);
+}
+[data-theme="ocean"] .code-copy-btn:hover {
+    background: var(--panel);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+[data-theme="ocean"] .new-chat {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hot) 100%);
+    box-shadow:
+        0 2px 0 var(--accent-deep),
+        0 6px 14px rgba(33, 52, 72, 0.35);
+}
+[data-theme="ocean"] .mode-toggle.image-mode {
+    background: linear-gradient(135deg, rgba(148, 180, 193, 0.35), rgba(84, 119, 146, 0.20));
+    border-color: var(--olive);
+    color: var(--accent-hot);
+}
+
 /* Light theme pattern adjustments for plum */
 [data-theme="plum"] body::after {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='160' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C25 0 15 20 15 40 C15 60 5 80 5 80 C5 80 15 100 15 120 C15 140 25 160 40 160 C55 160 65 140 65 120 C65 100 75 80 75 80 C75 80 65 60 65 40 C65 20 55 0 40 0 Z' fill='%23853953' stroke='%23a04d68' stroke-width='1'/%3E%3C/svg%3E");
