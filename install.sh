@@ -129,9 +129,28 @@ rm /tmp/LiteLLMChat.applescript
 # Apply custom icon if it exists
 if [ -f "$INSTALL_DIR/LiteLLM-logo.icns" ]; then
     echo "🎨 Applying custom icon..."
+    
+    # Copy to app bundle
     cp "$INSTALL_DIR/LiteLLM-logo.icns" "$HOME/Applications/$APP_NAME.app/Contents/Resources/applet.icns"
-    # Touch the app to refresh icon cache
+    
+    # Create AppleScript to set icon using NSWorkspace
+    cat > /tmp/seticon.scpt << SETICON
+use framework "AppKit"
+
+set iconPath to "$INSTALL_DIR/LiteLLM-logo.icns"
+set appPath to "$HOME/Applications/$APP_NAME.app"
+
+set iconImage to current application's NSImage's alloc()'s initWithContentsOfFile:iconPath
+current application's NSWorkspace's sharedWorkspace()'s setIcon:iconImage forFile:appPath options:0
+SETICON
+    
+    # Run the AppleScript
+    osascript /tmp/seticon.scpt 2>/dev/null || true
+    rm -f /tmp/seticon.scpt
+    
+    # Touch the app to refresh
     touch "$HOME/Applications/$APP_NAME.app"
+    
     echo "✅ Custom icon applied"
 fi
 
