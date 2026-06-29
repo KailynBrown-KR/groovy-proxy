@@ -1685,7 +1685,7 @@ async function extractPdfText(file){
     }
     const lib=globalThis.pdfjsLib||window.pdfjsLib;
     if(!lib) throw new Error('PDF.js not loaded');
-    lib.GlobalWorkerOptions.workerSrc='';
+    lib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
     const buf=await file.arrayBuffer();
     const doc=await lib.getDocument({data:buf}).promise;
     const pages=[];
