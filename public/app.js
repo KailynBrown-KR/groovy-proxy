@@ -2924,13 +2924,13 @@ function createModelSettingsPanel() {
                             <label>Theme</label>
                             <select id="panel-theme-select">
                                 <option value="dark">🫒 Dark Olive</option>
-                                <option value="light">☀️ Sunburst</option>
+                                <option value="light">☀️ Sunburst Orange</option>
                                 <option value="plum">🍇 Plum Purple</option>
-                                <option value="sage">🌿 Sage</option>
-                                <option value="ocean">🌊 Ocean</option>
-                                <option value="slate">🌑 Slate</option>
-                                <option value="rose">🌹 Rose</option>
-                                <option value="lavender">💜 Lavender</option>
+                                <option value="sage">🌿 Sage Green</option>
+                                <option value="ocean">🌊 Ocean Blue</option>
+                                <option value="slate">🌑 Slate Grey</option>
+                                <option value="rose">🍒 Raspberry Red</option>
+                                <option value="lavender">🍬 Cotton Candy</option>
                             </select>
                         </div>
                         <div class="settings-field">
